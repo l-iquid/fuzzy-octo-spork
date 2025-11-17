@@ -79,7 +79,9 @@ class _SignInPage extends ConsumerState<SignInPage> {
                     return;
                   }
                 } else {
-                  loggedUsers.push(_usernameBox, (_passwordBox, 0, 0));
+                  setState(() {
+                    loggedUsers.push(_usernameBox, (_passwordBox, 0, 0));
+                  });
                 }
 
                 username.set(_usernameBox);

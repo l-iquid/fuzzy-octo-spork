@@ -41,7 +41,7 @@ class _MainPage extends ConsumerState<MainPage> {
             
             Text("Hello $username!", textScaler: TextScaler.linear(2)),
             if (balance <= 0)
-              Text("You are a broke ass! (0.00 \$)", textScaler: TextScaler.linear(3)),
+              Text("You are a broke hoe! (0.00 \$)", textScaler: TextScaler.linear(3)),
 
             Padding(padding: EdgeInsetsGeometry.all(15)),
 

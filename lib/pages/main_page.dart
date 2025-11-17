@@ -4,7 +4,6 @@
 
 import 'package:finalproject/states/login_states.dart';
 import 'package:finalproject/widgets/appbar.dart';
-import 'package:finalproject/widgets/drawer.dart';
 import 'package:finalproject/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

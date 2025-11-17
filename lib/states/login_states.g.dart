@@ -9,12 +9,12 @@ part of 'login_states.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(username)
-const usernameProvider = UsernameProvider._();
+@ProviderFor(UsernameNotifier)
+const usernameProvider = UsernameNotifierProvider._();
 
-final class UsernameProvider extends $FunctionalProvider<String, String, String>
-    with $Provider<String> {
-  const UsernameProvider._()
+final class UsernameNotifierProvider
+    extends $NotifierProvider<UsernameNotifier, String> {
+  const UsernameNotifierProvider._()
     : super(
         from: null,
         argument: null,
@@ -26,17 +26,11 @@ final class UsernameProvider extends $FunctionalProvider<String, String, String>
       );
 
   @override
-  String debugGetCreateSourceHash() => _$usernameHash();
+  String debugGetCreateSourceHash() => _$usernameNotifierHash();
 
   @$internal
   @override
-  $ProviderElement<String> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  String create(Ref ref) {
-    return username(ref);
-  }
+  UsernameNotifier create() => UsernameNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(String value) {
@@ -47,14 +41,33 @@ final class UsernameProvider extends $FunctionalProvider<String, String, String>
   }
 }
 
-String _$usernameHash() => r'c98986c6a434ad54933380a557b2902f899e9f14';
+String _$usernameNotifierHash() => r'ae04baf2a6c2ed434729d3f4f45422e6f4fece12';
 
-@ProviderFor(password)
-const passwordProvider = PasswordProvider._();
+abstract class _$UsernameNotifier extends $Notifier<String> {
+  String build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<String, String>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<String, String>,
+              String,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
 
-final class PasswordProvider extends $FunctionalProvider<String, String, String>
-    with $Provider<String> {
-  const PasswordProvider._()
+@ProviderFor(PasswordNotifier)
+const passwordProvider = PasswordNotifierProvider._();
+
+final class PasswordNotifierProvider
+    extends $NotifierProvider<PasswordNotifier, String> {
+  const PasswordNotifierProvider._()
     : super(
         from: null,
         argument: null,
@@ -66,17 +79,11 @@ final class PasswordProvider extends $FunctionalProvider<String, String, String>
       );
 
   @override
-  String debugGetCreateSourceHash() => _$passwordHash();
+  String debugGetCreateSourceHash() => _$passwordNotifierHash();
 
   @$internal
   @override
-  $ProviderElement<String> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  String create(Ref ref) {
-    return password(ref);
-  }
+  PasswordNotifier create() => PasswordNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(String value) {
@@ -87,20 +94,37 @@ final class PasswordProvider extends $FunctionalProvider<String, String, String>
   }
 }
 
-String _$passwordHash() => r'4c84ff83ee4b595d3c0a97e71a8b9e4fd101afae';
+String _$passwordNotifierHash() => r'dc27e5b2b284bd50c51df955de93261d3bc173f8';
 
-@ProviderFor(loggedUsers)
-const loggedUsersProvider = LoggedUsersProvider._();
+abstract class _$PasswordNotifier extends $Notifier<String> {
+  String build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<String, String>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<String, String>,
+              String,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
 
-final class LoggedUsersProvider
+@ProviderFor(LoggedUsersNotifier)
+const loggedUsersProvider = LoggedUsersNotifierProvider._();
+
+final class LoggedUsersNotifierProvider
     extends
-        $FunctionalProvider<
-          List<(String, String, UserData)>,
-          List<(String, String, UserData)>,
-          List<(String, String, UserData)>
-        >
-    with $Provider<List<(String, String, UserData)>> {
-  const LoggedUsersProvider._()
+        $NotifierProvider<
+          LoggedUsersNotifier,
+          Map<String, (String, double, double)>
+        > {
+  const LoggedUsersNotifierProvider._()
     : super(
         from: null,
         argument: null,
@@ -112,28 +136,49 @@ final class LoggedUsersProvider
       );
 
   @override
-  String debugGetCreateSourceHash() => _$loggedUsersHash();
+  String debugGetCreateSourceHash() => _$loggedUsersNotifierHash();
 
   @$internal
   @override
-  $ProviderElement<List<(String, String, UserData)>> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  List<(String, String, UserData)> create(Ref ref) {
-    return loggedUsers(ref);
-  }
+  LoggedUsersNotifier create() => LoggedUsersNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(List<(String, String, UserData)> value) {
+  Override overrideWithValue(Map<String, (String, double, double)> value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<List<(String, String, UserData)>>(
-        value,
-      ),
+      providerOverride:
+          $SyncValueProvider<Map<String, (String, double, double)>>(value),
     );
   }
 }
 
-String _$loggedUsersHash() => r'5ae23d9c9edcc080671306b3b6847d5fb5fb9eeb';
+String _$loggedUsersNotifierHash() =>
+    r'527864e097e0c62d316f250189985218c89fb554';
+
+abstract class _$LoggedUsersNotifier
+    extends $Notifier<Map<String, (String, double, double)>> {
+  Map<String, (String, double, double)> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref =
+        this.ref
+            as $Ref<
+              Map<String, (String, double, double)>,
+              Map<String, (String, double, double)>
+            >;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<
+                Map<String, (String, double, double)>,
+                Map<String, (String, double, double)>
+              >,
+              Map<String, (String, double, double)>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

@@ -2,6 +2,8 @@ import 'package:finalproject/pages/main_page.dart';
 import 'package:finalproject/pages/signin_page.dart';
 import 'package:finalproject/pages/terms_of_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart';
+import 'package:flutter_acrylic/window.dart';
 import 'package:go_router/go_router.dart';
 
 final routerConfig = GoRouter(
@@ -21,7 +23,7 @@ final routerConfig = GoRouter(
       path: '/main',
       name: 'main',
       builder: (context, state) => const MainPage(),
-    )
+    ),
   ]
 );
 
@@ -30,12 +32,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData.from(colorScheme: ColorScheme.dark(
         primary: Colors.red,
         outline: Colors.redAccent,
-        surface: Color.fromRGBO(28, 28, 28, 1)
+        surface: Colors.transparent,
+        
       )),
 
       routerConfig: routerConfig,

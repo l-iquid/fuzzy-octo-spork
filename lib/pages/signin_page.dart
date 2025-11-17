@@ -19,9 +19,9 @@ class _SignInPage extends ConsumerState<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<(String, String, UserData)> loggedUsers = ref.watch(loggedUsersProvider);
-    String username = ref.watch(usernameProvider);
-    String password = ref.watch(passwordProvider);
+    final loggedUsers = ref.watch(loggedUsersProvider.notifier);
+    final username = ref.watch(usernameProvider.notifier);
+    final password = ref.watch(passwordProvider.notifier);
 
     return Scaffold(
       body: Center(
@@ -32,7 +32,7 @@ class _SignInPage extends ConsumerState<SignInPage> {
             Text("Raising Debt", textScaler: TextScaler.linear(1.5)),
             Padding(padding: EdgeInsetsGeometry.all(5)),
 
-            Text(loggedUsers.isEmpty ? "Create Account" : "Sign In", textScaler: TextScaler.linear(2)),
+            Text(loggedUsers.isEmpty() ? "Create Account" : "Sign In", textScaler: TextScaler.linear(2)),
 
             SizedBox(width: 250, child: TextFormField(
               decoration: InputDecoration(
@@ -74,12 +74,10 @@ class _SignInPage extends ConsumerState<SignInPage> {
 
             OutlinedButton(onPressed: () {
               if (_usernameBox.isNotEmpty && _passwordBox.isNotEmpty && _tosAgreement) {
-                setState(() {
-                  loggedUsers.add((_usernameBox, _passwordBox, UserData()));
-                
-                  username = _usernameBox;
-                  password = _passwordBox;
-                });
+                loggedUsers.push(_usernameBox, (_passwordBox, 0, 0));
+
+                username.set(_usernameBox);
+                password.set(_passwordBox);
                 context.go('/main');
               }
             }, child: Text("Proceed"))

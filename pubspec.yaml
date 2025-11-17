@@ -37,7 +37,9 @@ dependencies:
   flutter_riverpod: ^3.0.3
   riverpod_annotation: ^3.0.3
   go_router: ^17.0.0
+  flutter_acrylic: ^1.1.4
   window_manager: ^0.5.1
+  money_formatter: ^0.0.6
 
 dev_dependencies:
   flutter_test:

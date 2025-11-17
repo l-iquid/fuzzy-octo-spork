@@ -5,6 +5,7 @@
 import 'package:finalproject/states/login_states.dart';
 import 'package:finalproject/widgets/appbar.dart';
 import 'package:finalproject/widgets/drawer.dart';
+import 'package:finalproject/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -22,16 +23,14 @@ class MainPage extends ConsumerStatefulWidget {
 }
 
 class _MainPage extends ConsumerState<MainPage> {
-  double _textFieldMoneyValue = 0;
 
   @override
   Widget build(BuildContext context) {
     String username = ref.watch(usernameProvider);
     final loggedUsers = ref.watch(loggedUsersProvider);
-    final loggedUsersNotifier = ref.watch(loggedUsersProvider.notifier);
     double balance = loggedUsers[username]?.$2 ?? 0;
-    double debt = loggedUsers[username]?.$3 ?? 0;
-
+    final usernameNotifier = ref.watch(usernameProvider.notifier);
+    final passwordNotifier = ref.watch(passwordProvider.notifier);
 
     return Scaffold(
       appBar: appBar(username),
@@ -39,41 +38,22 @@ class _MainPage extends ConsumerState<MainPage> {
         child: Column(
           children: [
             Padding(padding: EdgeInsetsGeometry.all(15)),
-            Text("Balance: ${balance.toStringAsFixed(2)}", textScaler: TextScaler.linear(2)),
-            Text("Debt: ${debt.toStringAsFixed(2)}"),
-            Padding(padding: EdgeInsetsGeometry.all(15)),
-
-            SizedBox(width: 250, child: TextField(
-              inputFormatters: [
-                FilteringTextInputFormatter.singleLineFormatter,
-                FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d*')),
-              ],
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                hintText: 'Money amount...',
-                border: OutlineInputBorder()
-              ),
-              onChanged: (value) => _textFieldMoneyValue = double.tryParse(value) ?? 0,
-            )),
-
-            Padding(padding: EdgeInsetsGeometry.all(15)),
-
-            SizedBox(width: 250, child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              OutlinedButton(onPressed: () => loggedUsersNotifier.deposit(username, _textFieldMoneyValue), child: Text("Deposit")),
-              Padding(padding: EdgeInsetsGeometry.all(5)),
-              OutlinedButton(onPressed: () => loggedUsersNotifier.withdraw(username, _textFieldMoneyValue), child: Text("Withdraw")),
-            ])),
+            
+            Text("Hello $username!", textScaler: TextScaler.linear(2)),
+            if (balance <= 0)
+              Text("You are a broke ass! (0.00 \$)", textScaler: TextScaler.linear(3)),
 
             Padding(padding: EdgeInsetsGeometry.all(15)),
 
             FilledButton(onPressed: () {
-              loggedUsersNotifier.setBalance(username, 0);
-              loggedUsersNotifier.setDebt(username, 0);
-            }, child: Text("Bankruptcy!")),
+              usernameNotifier.set("");
+              passwordNotifier.set("");
+              context.go('/');
+            }, child: Text("Log Out")),
           ]
         )
       ),
-      drawer: drawer(context)
+      bottomNavigationBar: navigationBar(0, context),
     );
   }
 

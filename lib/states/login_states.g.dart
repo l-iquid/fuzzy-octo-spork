@@ -153,7 +153,7 @@ final class LoggedUsersNotifierProvider
 }
 
 String _$loggedUsersNotifierHash() =>
-    r'527864e097e0c62d316f250189985218c89fb554';
+    r'51cccb6195b3e939b13bc76b7fefce5987ed158e';
 
 abstract class _$LoggedUsersNotifier
     extends $Notifier<Map<String, (String, double, double)>> {

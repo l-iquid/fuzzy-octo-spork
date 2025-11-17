@@ -56,25 +56,31 @@ class _SignInPage extends ConsumerState<SignInPage> {
               obscureText: true,
               onChanged: (value) => setState(() => _passwordBox = value),
             )),
-
-            ElevatedButton(child: Text("View Terms of Service"), onPressed: () => context.go('/terms')),
-
-            SizedBox(width: 350, child: 
-              CheckboxListTile(
-                title: const Text("I agree to the Terms of Service."),
-                value: _tosAgreement,
-                onChanged: (bool? newValue) {
-                  setState(() {
-                    _tosAgreement = newValue ?? false;
-                  });
-                },
-                controlAffinity: ListTileControlAffinity.leading,
-              )
-            ),
+            if (loggedUsers.isEmpty())
+              ElevatedButton(child: Text("View Terms of Service"), onPressed: () => context.go('/terms')),
+            if (loggedUsers.isEmpty())
+              SizedBox(width: 350, child: 
+                CheckboxListTile(
+                  title: const Text("I agree to the Terms of Service."),
+                  value: _tosAgreement,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _tosAgreement = newValue ?? false;
+                    });
+                  },
+                  controlAffinity: ListTileControlAffinity.leading,
+                )
+              ),
 
             OutlinedButton(onPressed: () {
-              if (_usernameBox.isNotEmpty && _passwordBox.isNotEmpty && _tosAgreement) {
-                loggedUsers.push(_usernameBox, (_passwordBox, 0, 0));
+              if (_usernameBox.isNotEmpty && _passwordBox.isNotEmpty && (_tosAgreement || (!loggedUsers.isEmpty()))) {
+                if (!loggedUsers.isEmpty()) {
+                  if (!loggedUsers.getState().containsKey(_usernameBox) || loggedUsers.getState()[_usernameBox]?.$1 != _passwordBox) {
+                    return;
+                  }
+                } else {
+                  loggedUsers.push(_usernameBox, (_passwordBox, 0, 0));
+                }
 
                 username.set(_usernameBox);
                 password.set(_passwordBox);

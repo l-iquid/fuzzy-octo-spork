@@ -43,6 +43,10 @@ class LoggedUsersNotifier extends _$LoggedUsersNotifier {
     return state.isEmpty;
   }
 
+  Map<String, (String, double, double)> getState() {
+    return state;
+  }
+
   void setBalance(String username, double balance) {
     if (state.containsKey(username)) {
       Map<String, (String, double, double)> old = Map.from(state);

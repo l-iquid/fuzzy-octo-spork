@@ -26,12 +26,6 @@ void configureWindow() async {
 
 Future<void> main() async {
   configureWindow();
-  WidgetsFlutterBinding.ensureInitialized();
-  await Window.initialize();
-  await Window.setEffect(
-    effect: WindowEffect.mica,
-    color: const Color.fromARGB(255, 143, 58, 58)
-  );
   
 
   runApp(

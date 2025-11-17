@@ -13,7 +13,7 @@ Drawer drawer(BuildContext context) {
           child: Image(image: AssetImage("lib/assets/images/logo.png"), width: 180, height: 100),
         ),
         ListTile(
-          title: const Text('Bank'),
+          title: const Text('Homepage'),
           onTap: () {
             context.go('/main');
           }
